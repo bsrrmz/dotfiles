@@ -1,0 +1,19 @@
+#!/bin/bash
+bd=/sys/class/backlight/intel_backlight/brightness
+
+bdv=$(cat $bd)
+
+case $1 in
+	up)
+		#xbacklight -inc 20
+		echo $(( bdv + 20 )) > $bd
+		cat $bd
+	;;
+	down)
+		#xbacklight -dec 20
+		echo $(( bdv - 20 )) > $bd
+		cat $bd
+	;;
+	*)
+	echo "$bdv"
+esac

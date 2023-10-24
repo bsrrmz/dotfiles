@@ -1,0 +1,18 @@
+#!/bin/sh
+
+choices="Screen\nWindow\nBordered\nSelect"
+chosen=$(printf "$choices" | dmenu -i -fn 'Terminus:style=bold:pixelsize=18' -p 'Scrot')
+#
+#%yy-%mm-%dd-%hhmmss_$wx$h_scrot.png.
+
+#output='$HOME/fileandfolders/screenshots/screenshot-%Y-%m-%d-%T_$wx$h.png'
+
+case "$chosen" in
+    "Screen") scrot '/home/scorpion/fileandfolders/screenshots/screenshot-%F-%H%M%S_$wx$h.png' || exit ;;
+    "Window") scrot  '/home/scorpion/fileandfolders/screenshots/screenshot-%F-%H%M%S_$wx$h.png' --focused || exit ;;
+    "Bordered") scrot  '/home/scorpion/fileandfolders/screenshots/screenshot-%F-%H%M%S_$wx$h.png' --focused --border || exit ;;
+    "Select") scrot '/home/scorpion/fileandfolders/screenshots/screenshot-%F-%H%M%S_$wx$h.png' --select --line mode=edge || exit ;;
+    *) exit ;;
+esac
+
+
